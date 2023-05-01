@@ -13,6 +13,8 @@ export default function Scene()
 {
     const tempArray = [...Array(20)]
 
+    const botRef = useRef()
+
     
     const {strength, color,} = useControls('sphere',{
         strength: 
@@ -24,6 +26,8 @@ export default function Scene()
         },
         color: '#9bb179',
     })
+
+    
 
     const model = useGLTF('./mobileBot.glb')
     const botGeometry = model.nodes.bot.geometry
@@ -43,13 +47,20 @@ export default function Scene()
         {
             uBakedTexture: botBakedTexture,
             ulightMapTexture: lightMapTexture,
-            uColor: new THREE.Color('#9bb179')
+            uColor: new THREE.Color('#9bb179'),
+            uStrength: 1,
+            uTime: 0
         },
         vertexShader,
         fragmentShader,
     )
     
     extend({ BotMaterial })
+
+    useFrame((state, delta)=>{
+        botRef.current.uTime += delta
+    })
+
 
     return<>
     <Float
@@ -60,7 +71,7 @@ export default function Scene()
         >
             <group rotation-y={Math.PI} >
                 <mesh  geometry={botGeometry} >
-                    <botMaterial uColor={color} />
+                    <botMaterial ref={botRef} uColor={color} uStrength={strength} />
                     {/* <meshBasicMaterial map={botBakedTexture} /> */}
                 </mesh>
                 <mesh geometry={windowGeometry} >
