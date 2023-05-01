@@ -1,12 +1,10 @@
-import {shaderMaterial, OrbitControls, useHelper, Stage, Sparkles, BakeShadows, Effects} from "@react-three/drei"
+import {shaderMaterial, OrbitControls} from "@react-three/drei"
 import { extend } from "@react-three/fiber"
 import { UnrealBloomPass } from 'three-stdlib'
 import * as THREE from 'three'
 import './style.css'
 import { Perf } from "r3f-perf"
 import Scene from "./Scene"
-import { useRef } from "react"
-import { Bloom, EffectComposer } from "@react-three/postprocessing"
 
 
 

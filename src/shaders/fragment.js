@@ -1,8 +1,11 @@
 export default /*glsl */
 `
+uniform vec3 uColor;
 uniform sampler2D uBakedTexture;
 uniform sampler2D ulightMapTexture;
 varying vec2 vUv;
+
+#pragma glslify: blendAdd = require(glsl-blend/add)
 
 void main()
 {
@@ -10,9 +13,7 @@ void main()
     vec3 lightTexture = texture2D(ulightMapTexture, vUv).rgb;
     vec3 texture = texture2D(uBakedTexture, vUv).rgb;
 
-    vec3 lightColor = vec3(255.0 / 192.0, 255.0 /218.0, 255.0 / 116.0);
+    lightTexture = mix(texture, uColor, lightTexture.r);
 
-    vec3 mixColor = mix(texture, lightColor, lightTexture.r * 0.5);
-
-    gl_FragColor = vec4(mixColor, 1.0);
+    gl_FragColor = vec4(lightTexture, 1.0);
 }`

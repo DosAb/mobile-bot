@@ -1,5 +1,6 @@
 import { shaderMaterial, useAnimations, useTexture, useGLTF, useVideoTexture, Float } from "@react-three/drei"
 import { extend, useFrame } from "@react-three/fiber"
+import { useControls } from "leva"
 import { useRef } from "react"
 import * as THREE from 'three'
 
@@ -11,6 +12,18 @@ import fragmentShader from "./shaders/fragment"
 export default function Scene()
 {
     const tempArray = [...Array(20)]
+
+    
+    const {strength, color,} = useControls('sphere',{
+        strength: 
+        {
+            value: 1,
+            min: 0,
+            max: 2,
+            step: 0.01,
+        },
+        color: '#9bb179',
+    })
 
     const model = useGLTF('./mobileBot.glb')
     const botGeometry = model.nodes.bot.geometry
@@ -30,6 +43,7 @@ export default function Scene()
         {
             uBakedTexture: botBakedTexture,
             ulightMapTexture: lightMapTexture,
+            uColor: new THREE.Color('#9bb179')
         },
         vertexShader,
         fragmentShader,
@@ -46,7 +60,7 @@ export default function Scene()
         >
             <group rotation-y={Math.PI} >
                 <mesh  geometry={botGeometry} >
-                    <botMaterial />
+                    <botMaterial uColor={color} />
                     {/* <meshBasicMaterial map={botBakedTexture} /> */}
                 </mesh>
                 <mesh geometry={windowGeometry} >
