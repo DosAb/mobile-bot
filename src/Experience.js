@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import './style.css'
 import { Perf } from "r3f-perf"
 import Scene from "./Scene"
+import Background from "./Background"
 
 
 
@@ -34,7 +35,7 @@ export default function Experience()
         <hemisphereLight intensity={0.4} color="#e4fbff" groundColor="#0099ff" />
         <ambientLight intensity={0.1} color="#b5e5ff" />
 
+        <Background />
         <Scene />
-
     </> 
 }
