@@ -1,4 +1,4 @@
-import { shaderMaterial } from "@react-three/drei"
+import { shaderMaterial, useGLTF, useTexture, ContactShadows } from "@react-three/drei"
 import { extend, useFrame } from "@react-three/fiber"
 import { useControls } from "leva"
 import { useRef,useEffect } from "react"
@@ -9,10 +9,11 @@ import fragmentShader from "./shaders/background/fragment"
 import vertexShader from "./shaders/background/vertex"
 
 
+
 const BackgroundMaterial = shaderMaterial(
     {
-        uReseloution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-        uTime: 1
+        uTime: 1,
+        uTexture: 1
     },
     vertexShader,
     fragmentShader,
@@ -20,14 +21,18 @@ const BackgroundMaterial = shaderMaterial(
 
 extend({ BackgroundMaterial })
 
-console.log(window.screen)
-
 export default function Background()
 {   
+    const model = useGLTF('./floor.glb')
+
+    const floorTexture = useTexture('./floorBake.jpg')
+    floorTexture.flipY = false
+
     const materialRef = useRef()
     // useEffect(()=>{
     //     console.log(materialRef)
-    //     // materialRef.current.depthWrite = false
+        
+    //     // materialRef.current.uTexture = botBakedTexture
     // }, [])
 
     useFrame((state, delta)=>{
@@ -35,9 +40,9 @@ export default function Background()
     })
 
     return <>
-        <mesh >
-            <planeGeometry args={[2, 2, 256, 256]} />
-            <backgroundMaterial ref={materialRef} depthTest={false} />
+        <mesh rotation-x={Math.PI * 0.5} position-y={-5} rotation-y={Math.PI} >
+            <planeGeometry args={[30, 30, 512, 512]} />
+            <backgroundMaterial uTexture={floorTexture} ref={materialRef}/>
         </mesh>
     </>
 }

@@ -63,12 +63,13 @@ export default function Scene()
 
 
     return<>
-    <Float
+    {/* <Float
         speed={1} // Animation speed, defaults to 1
         rotationIntensity={0.4} // XYZ rotation intensity, defaults to 1
         floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
         floatingRange={[1, 2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
         >
+    </Float> */}
             <group rotation-y={Math.PI} >
                 <mesh  geometry={botGeometry} >
                     <botMaterial ref={botRef} uColor={color} uStrength={strength} />
@@ -78,7 +79,6 @@ export default function Scene()
                     <meshBasicMaterial map={videoTexture} />
                 </mesh>
             </group>  
-    </Float>
 
     {/* {tempArray.map((value, index)=>{
         return<>
