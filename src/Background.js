@@ -27,6 +27,8 @@ export default function Background()
 
     const floorTexture = useTexture('./floorBake.jpg')
     floorTexture.flipY = false
+    const shadowTexture = useTexture('./roundshadow.png')
+    shadowTexture.flipY = false
 
     const materialRef = useRef()
     // useEffect(()=>{
@@ -40,9 +42,13 @@ export default function Background()
     })
 
     return <>
-        <mesh rotation-x={Math.PI * 0.5} position-y={-5} rotation-y={Math.PI} >
+        <mesh rotation-x={Math.PI * 0.5} position-y={-4.95} rotation-y={Math.PI} >
             <planeGeometry args={[30, 30, 512, 512]} />
             <backgroundMaterial uTexture={floorTexture} ref={materialRef}/>
+        </mesh>
+        <mesh rotation-x={Math.PI * 0.5} position-y={-4.9} rotation-y={Math.PI} >
+            <planeGeometry args={[10, 10]} />
+            <meshBasicMaterial transparent={true} map={shadowTexture} />
         </mesh>
     </>
 }
