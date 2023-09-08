@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client"
 import { Canvas } from "@react-three/fiber"
+import {  ScrollControls } from "@react-three/drei";
 import './reset.css'
 import './style.css'
 import Experience from "./Experience"

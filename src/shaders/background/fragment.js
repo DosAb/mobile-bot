@@ -16,11 +16,6 @@ void main()
 {
     float distnaceToCenter = distance(vUv, vec2(0.5));
 
-
-
-    
-
-
     if(vProgress > .4)
     {
         discard;

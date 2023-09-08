@@ -18,7 +18,7 @@ export default function Experience()
     
 
         {/* <Perf position="top-left" /> */}
-        <OrbitControls makeDefault />
+        <OrbitControls makeDefault enableZoom={true}  />
         <directionalLight
             shadow-mapSize={[1024, 1024]}
             castShadow

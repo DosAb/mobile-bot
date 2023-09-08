@@ -43,7 +43,7 @@ export default function Background()
 
     return <>
         <mesh rotation-x={Math.PI * 0.5} position-y={-4.95} rotation-y={Math.PI} >
-            <planeGeometry args={[30, 30, 512, 512]} />
+            <planeGeometry args={[20, 20, 512, 512]} />
             <backgroundMaterial uTexture={floorTexture} ref={materialRef}/>
         </mesh>
         <mesh rotation-x={Math.PI * 0.5} position-y={-4.9} rotation-y={Math.PI} >
