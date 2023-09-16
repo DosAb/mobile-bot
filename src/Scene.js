@@ -47,7 +47,7 @@ export default function Scene()
         {
             uBakedTexture: botBakedTexture,
             ulightMapTexture: lightMapTexture,
-            uColor: new THREE.Color('#9bb179'),
+            uColor: new THREE.Color('#72B01D'),
             uStrength: 1,
             uTime: 0
         },
